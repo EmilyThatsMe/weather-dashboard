@@ -1,0 +1,19 @@
+header {
+    background-image: linear-gradient(to right, blue, navy);
+}
+
+h1{
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
+button {
+    width: 100%;
+    margin-top: 5px;
+    background-color: rgb(45, 135, 238);
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 20px;
+}
