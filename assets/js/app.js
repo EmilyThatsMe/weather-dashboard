@@ -22,9 +22,22 @@ document.querySelector("#btn").onclick = function(){
           return response.json();
       })
       .then(function(resJSON) {
-          console.log(resJSON);
+                // get current temp, wind, uv, and humidity
+        var temp = resJSON.current.temp;
+        var wind = resJSON.current.wind_speed;
+        var humidity = resJSON.current.humidity;
+        var uvi = resJSON.current.uvi;
+        console.log(temp);
+        console.log(wind);
+        console.log(humidity);
+        console.log(uvi);
+        // Render current weather info to page
+        document.querySelector(".city").innerHTML = searchTerm;
+        document.querySelector(".temperature").innerHTML = "Temperature:  " + temp;
+        document.querySelector(".humidity").innerHTML = "Humidity:  " + humidity;
+        document.querySelector(".windSpeed").innerHTML = "Wind Speed:  " + wind;
+        document.querySelector(".uvIndex").innerHTML = "UV Index:  " + uvi;
+        
       })
 
 }
-
-// latitude and longitude are .coord, .name = name, temp is .main.temp, humidity is .main.humidity
