@@ -12,17 +12,19 @@ document.querySelector("#btn").onclick = function(){
         return response.json();
       })
       .then(function(resJSON){
-          const cityWeather = resJSON.main;
-          console.log(cityWeather);
+         var latitude = resJSON.coord.lat;
+         var longitude = resJSON.coord.lon;
+          console.log(latitude);
+          console.log(longitude);
+          return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`)
       })
-      // select div container where info will be displayed
-      var responseContainerEl = document.querySelector ("#city--container");
-
-      var humidity = resJSON.main.humidity;
-      var temp = resJSON.main.temp;
-
-      responseContainerEl.appendChild(humidity);
-      responseContainerEl.appendChild(temp);
+      .then(function(response) {
+          return response.json();
+      })
+      .then(function(resJSON) {
+          console.log(resJSON);
+      })
 
 }
 
+// latitude and longitude are .coord, .name = name, temp is .main.temp, humidity is .main.humidity
