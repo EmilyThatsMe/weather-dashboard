@@ -1,9 +1,14 @@
 
 // function to make api call
 document.querySelector("#btn").onclick = function(){
+
     // create a variable to hold search input
      var searchTerm = document.querySelector('#formGroupInput').value;
     console.log(searchTerm);
+    // save to local storage
+    localStorage.setItem("cityHistory", searchTerm);
+    document.getElementById("search-history").innerHTML = localStorage.getItem("cityHistory");
+
     // apiKey variable
     var apiKey = "5734b5b7710f970d3694f1685905df64";
     // fetch weather info on city
@@ -16,7 +21,7 @@ document.querySelector("#btn").onclick = function(){
          var longitude = resJSON.coord.lon;
          // console.log(latitude);
          // console.log(longitude);
-          return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`)
+          return fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`)
       })
       .then(function(response) {
           return response.json();
@@ -60,14 +65,19 @@ document.querySelector("#btn").onclick = function(){
         document.querySelector(".uvIndex").innerHTML = "UV Index:  " + uvi;
         // get and render icon
         var iconEl = document.querySelector(".icon");
-        iconEl.append(`<img src="http://openweathermap.org/img/wn/10d@2x.png">`);
+        iconEl.append(`<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`);
 
         // get and render current date
         var cityEl = document.querySelector(".city");
         var now = moment().format("MMM Do YY");
         cityEl.append("    " + now);
         //console.log(now);
-
+        
+        // change color based on uv index
+        var uvEl = document.querySelector(".uvIndex");
+        if (uvi.value > 5){
+            uvEl.style.backgroundColor = "red";
+        }
 
         // render 5 day forecast
         var dayOne = moment().add(1, 'days').format("MMM Do YY");
@@ -97,5 +107,6 @@ document.querySelector("#btn").onclick = function(){
         document.querySelector("#hum-5").innerHTML = "Humidity: " + humidity5;
 
       })
+
 
 }

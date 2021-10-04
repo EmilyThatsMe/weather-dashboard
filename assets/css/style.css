@@ -18,15 +18,28 @@ button {
     font-size: 20px;
 }
 
+ul{
+    text-align: center;
+    margin-top: 10px;
+    background: grey;
+    padding: 5px;
+    color: white;
+}
+
 .city {
     font-size: 30px;
 }
 
+.uvIndex{
+    background: green;
+    color: white;
+    width: 100px;
+}
 
 
 .day{
     background: rgb(67, 67, 109);
     color: white;
-    padding: 20px;
-    height: 120px;
+    padding: 15px;
 }
+
